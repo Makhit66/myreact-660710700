@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './logo3.jpg';
 import './App.css';
 import Hello from'./Hello';
 import JSXExamples from './components/JSXExamples';
@@ -11,7 +11,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Hello <code> This is </code> my React!.
         </p>
         <a
           className="App-link"
