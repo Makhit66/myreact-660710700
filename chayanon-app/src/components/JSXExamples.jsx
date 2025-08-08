@@ -1,52 +1,52 @@
-import React  from "react";
+import React from "react";
 
-function JSXExamples(){
+function JSXExamples() {
 
     const greeting = <h1> Hello, React With JSX!!!</h1>
-    const name = 'สมชาย';
-    const age = 25;
+    const name = 'ชญานนท์ ';
+    const age = 20;
 
-    const currentYear = new Date().getFullYear;
+    const currentYear = new Date().getFullYear();
 
-    const user={
-        firsName: 'ชญานนท์',
-        lastName:'สุขอินทร์',
-        age: 21,
-        hoobbies:['เล่นเกม','ฟังเพลง','ดูหนัง','เขียนโค้ส']
+    const user = {
+        firstName: 'ชญานนท์ ',
+        lastName: 'สุขอินทร์',
+        age: 20,
+        hobbies: ['เล่นเกม', 'ฟังเพลง', 'ดูหนัง', 'เขียนโค้ด']
 
     };
 
-    const formatName=(user) =>{
+    const formatName = (user) => {
         return `${user.firstName} ${user.lastName}`;
-        
+
     };
 
     const isLoggedIn = true;
-    const hasNotification = 3;
-    
-     return (
+    const hasNotification = 5;
+
+    return (
         <div className="jsx-examples">
-            <h1>JSX Examp</h1>
+            <h1>JSX Examples</h1>
             <section>
-            <h2>การเเสดงผลข้อมูล</h2>
-            {greeting}
+                <h2>การแสดงผลข้อมูล</h2>
+                {greeting}
                 <p>สวัสดีคุณ {name} อายุ {age} ปี</p>
                 <p>ปีนี้คือปี {currentYear}</p>
                 <p>ชื่อจริง: {formatName(user)}</p>
             </section>
-            
+
             <section>
                 <h2>Attributes ใน JSX</h2>
                 <div className="card">
                     <p className="text-primary">ใช้ className แทน class</p>
                 </div>
-                <button 
-                onClickCapture={()=> alert('Button Clicked!')}
-                onMouseEnter={()=> console.log('Mouse Entered!')}
+                <button
+                    onClickCapture={() => alert('Button Clicked!')}
+                    onMouseEnter={() => console.log('Mouse Entered!')}
                 >
-                   Hover me or Click me! 
+                    Hover me or Click me!
                 </button>
-            
+
 
                 <div style={{
                     backgroundColor: '#E8F5E8',
@@ -55,31 +55,98 @@ function JSXExamples(){
                     marginTop: '10px'
                 }}>
                     <p style={{ color: '#2D4A2B', fontWeight: 'bold' }}>
-                    Inline styles ใช้ object
+                        Inline styles ใช้ object
                     </p>
                 </div>
             </section>
 
             <section>
-             <h2>Conditional Rendering</h2>
+                <h2>Conditional Rendering</h2>
                 <p>สถานะ: {isLoggedIn ? 'ออนไลน์' : 'ออฟไลน์'}</p>
-                
+
                 {hasNotification > 0 && (
                     <div className="notification">
                         คุณมีการแจ้งเตือนใหม่ {hasNotification} รายการ
                     </div>
                 )}
-                
-                {(()=>{
-                    if(user.age>=18){
+
+                {(() => {
+                    if (user.age >= 18) {
                         return <p> เป็นผู้ใหญ่แล้ว</p>;
                     } else {
                         return <p>ยังเป็นเด็ก</p>;
                     }
                 }
-) ()}
+                )()}
+            </section>
+            <section>
+                <h2> การแสดงผล Lists</h2>
+                <h3>งานอดิเรกของ {user.firstName}:</h3>
+                <ul>
+                    {user.hobbies.map((hobby, index) => (
+                        <li key={index}>
+                            {index + 1}. {hobby}
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="product-list">
+                    <h3>รายการสินค้า</h3>
+                    {[
+                        { id: 1, name: 'CPU', price: 15000, inStock: false },
+                        { id: 2, name: 'จอ', price: 2300, inStock: false },
+                        { id: 3, name: 'ลำโพง', price: 700, inStock: true }
+                    ].map(product => (
+                        <div key={product.id} className="product-item">
+                            <span>{product.name}</span>
+                            <span> - ฿{product.price.toLocaleString()}</span>
+                            <span className={product.inStock ? 'in-stock' : 'out-stock'}>
+                                {product.inStock ? 'มีสินค้า' : 'สินค้าหมด'}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </section>
+            <section>
+                <h2>🧩 React Fragment</h2>
+                <p>ใช้เมื่อไม่ต้องการ wrapper element:</p>
+
+                <React.Fragment>
+                    <h3>หัวข้อ</h3>
+                    <p>เนื้อหา</p>
+                </React.Fragment>
+
+                <>
+                    <h3>หัวข้ออื่น</h3>
+                    <p>เนื้อหาอื่น</p>
+                </>
+            </section>
+            <section>
+                <h2>🎯 Event Handling ใน JSX</h2>
+                <input
+                    type="text"
+                    placeholder="พิมพ์อะไรก็ได้..."
+                    onChange={(e) => console.log('พิมพ์:', e.target.value)}
+                />
+
+                <select onChange={(e) => alert(`เลือก: ${e.target.value}`)}>
+                    <option value="">-- เลือกภาษา --</option>
+                    <option value="js">JavaScript</option>
+                    <option value="py">Python</option>
+                    <option value="java">Java</option>
+                    <option value="go">Go</option>
+                </select>
+            </section>
+            <section>
+                <h2>💬 Comments ใน JSX</h2>
+                <p>Comment ใน JSX ต้องอยู่ใน{/* curly braces */}</p>
+                {
+                    // นี่ก็เป็น comment เช่นกัน
+                    // แต่อยู่ใน JavaScript expression
+                }
             </section>
         </div>
-     );
+
+    );
 }
 export default JSXExamples;
